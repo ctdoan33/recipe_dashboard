@@ -1,0 +1,8 @@
+<form (submit)="onSubmit()" #formData="ngForm">
+	<label for="name">Recipe Name:</label>
+	<input type="text" name="name" id="name" required minlength="3" [(ngModel)]="recipe.name" #name="ngModel">
+	<input type="submit" value="Start Recipe" [disabled]="formData.invalid">
+	<span *ngIf="name.errors?.required">Name is required</span>
+	<span *ngIf="name.errors?.minlength">Name must be at least 3 characters</span>
+</form>
+<a [routerLink]="['/recipes', 'all']"><button>Return to Recipes</button></a>

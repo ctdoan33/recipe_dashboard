@@ -1,0 +1,19 @@
+<table>
+	<thead>
+		<tr>
+			<th>Recipe</th>
+			<th>Rating</th>
+			<th>Chef</th>
+			<th>Like</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let recipe of recipes; let idx=index">
+			<td><a [routerLink]="['/recipes', recipe._id]">{{recipe.name}}</a></td>
+			<td>{{recipe.rating}}</td>
+			<td>{{recipe.chef}}</td>
+			<td><button (click)="like(idx)">Like</button></td>
+		</tr>
+	</tbody>
+</table>
+<a [routerLink]="['/recipes', 'new']"><button>New Recipe</button></a>

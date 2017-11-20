@@ -1,0 +1,29 @@
+<h1>{{recipe?.name}}</h1>
+<form (submit)="onSubmit(); formData.form.pristine=true" #formData="ngForm">
+	<label for="ingredient">Ingredient:</label>
+	<input type="text" name="ingredient" id="ingredient" required minlength="2" [(ngModel)]="ingredient.name" #name="ngModel">
+	<span *ngIf="name.errors?.required">Name is required</span>
+	<span *ngIf="name.errors?.minlength">Name must be at least 2 characters</span>
+	<br>
+	<label for="amount">Amount:</label>
+	<input type="text" name="amount" id="amount" required [(ngModel)]="ingredient.amount" #amount="ngModel">
+	<input type="submit" value="Add Ingredient" [disabled]="formData.invalid">
+	<span *ngIf="amount.errors?.required">Amount is required</span>
+	{{formData.prototype | json}}
+</form>
+<table>
+	<thead>
+		<tr>
+			<th>Ingredient</th>
+			<th>Amount</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let ingredient of recipe?.ingredients">
+			<td>{{ingredient.name}}</td>
+			<td>{{ingredient.amount}}</td>
+		</tr>
+	</tbody>
+</table>
+<a [routerLink]="['/recipes', recipeid]"><button>View Recipe</button></a>
+<a [routerLink]="['/recipes', 'all']"><button>Return to Recipes</button></a>
